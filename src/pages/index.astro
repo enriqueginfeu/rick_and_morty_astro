@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Personaje from "../components/Personaje.astro";
+
+const datos = await fetch("https://rickandmortyapi.com/api/character");
+const data = await datos.json();
+---
+
+<Layout title="Rick And Morty">
+	<main>
+		<div class="mb-10">
+			<div class="m-auto my-10 lg:mb-20">
+				<h1 class="text-center text-3xl w-1/2 m-auto lg:text-4xl xl:text-6xl">
+					Personajes de Rick And Morty
+				</h1>
+			</div>
+			<div class="m-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+				{
+					data.results.map((personaje) => (
+						<Personaje personaje={personaje} />
+					))
+				}
+			</div>
+		</div>
+		
+
+  <nav aria-label="Page navigation example">
+	<ul class="flex justify-center -space-x-px text-base h-10 m-auto mb-10">
+	  <li>
+		<a href="#" class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+	  </li>
+	  <li>
+		<a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+	  </li>
+	  <li>
+		<a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+	  </li>
+	  <li>
+		<a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+	  </li>
+	  <li>
+		<a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+	  </li>
+	  <li>
+		<a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+	  </li>
+	  <li>
+		<a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+	  </li>
+	</ul>
+  </nav>
+  
+
+	</main>
+</Layout>
+
+
+<style></style>

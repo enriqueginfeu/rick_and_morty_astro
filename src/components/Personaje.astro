@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+
+const { personaje } = Astro.props
+const { id, name, status, species, type, gender, origin, image, episode, url } = personaje
+---
+
+<div class="mb-10 shadow-2xl rounded-md w-80 mx-auto">   
+    <a 
+        href={`/personajes/${id}`} 
+        class="rounded-lg border shadow-md bg-blue-200 border-blue-200 hover:scale-105 hover:bg-blue-500 hover:border-blue-400 transition flex flex-col"
+        >
+        <img src={image} alt={`${name}`} class="m-auto mt-2 rounded-md">
+        <h1 class="text-center text-2xl mb-3 text-blue-300">{name}</h1>
+    </a>
+</div>

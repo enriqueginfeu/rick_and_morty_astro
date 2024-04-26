@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const datos = await fetch("https://rickandmortyapi.com/api/character");
+    const data = await datos.json();
+    const personajes = data.results;
+
+    return personajes.map((personaje) => ({
+        params: {
+            id: personaje.id,
+        },
+        props: {
+            personaje: personaje,
+        },
+    }));
+}
+
+const {
+    id,
+    name,
+    status,
+    species,
+    type,
+    gender,
+    origin,
+    image,
+    episode,
+    url,
+    location,
+} = Astro.props.personaje;
+
+const estado = status === "Alive" ? "bg-green-500 text-green-800" : status === "Dead" ? "bg-red-500 text-red-800" :  "bg-gray-500 text-gray-200";
+---
+
+<Layout title={`${name}`}>
+    
+        <main class="p-2">
+            <h1 class="text-center text-3xl mt-10 font-semibold md:text-4xl lg:text-5xl">{name}</h1>
+
+            <div class="my-16 mx-16 grid border-2 shadow-xl rounded-md lg:w-1/6 lg:px-4 lg:m-auto lg:my-20">    
+                <div class="m-auto">
+                    <img src={image} alt={`Imagen ${name}`} class="my-4"/>
+                </div>
+                <div class="m-auto text-xl">
+                    <p class="my-5 font-semibold">Genero: <span class="font-normal">{gender}</span></p>
+                    <p class="my-5 font-semibold">Estado:
+                        <span class=`text-xs font-semibold mr-2 px-5 py-1 rounded-full shadow-lg ${estado}`>
+                            {status}
+                        </span>
+                    <p class="my-5 font-semibold">Especie: <span class="font-normal">{species}</span></p>
+                    <p class="my-5 font-semibold">Origen: <span class="font-normal">{origin.name}</span></p>
+                    <p class="my-5 font-semibold">Visto ultima vez en <span>{location.name}</span></p>
+                </div>
+            </div>
+            
+        </main>
+    
+</Layout>
+    
